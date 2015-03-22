@@ -1,13 +1,16 @@
 FROM madron/uwsgi:latest
 MAINTAINER Massimiliano Ravelli <massimiliano.ravelli@gmail.com>
 
-# Copy only requirements to reuse cache for pip install
+# Requirements
 COPY requirements /src/requirements/
-
 RUN pip install -r /src/requirements/prod.txt
 
+# Source
 COPY . /src/
 
+ENV DJANGO_SETTINGS_MODULE=settings.prod
+
+# Static files
 RUN /src/manage.py collectstatic --link --noinput --verbosity=0
 
 VOLUME ["/sqlite"]
