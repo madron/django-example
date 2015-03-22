@@ -2,11 +2,11 @@ FROM madron/uwsgi:latest
 MAINTAINER Massimiliano Ravelli <massimiliano.ravelli@gmail.com>
 
 # Requirements
-ADD requirements /src/requirements/
+COPY requirements/ /src/requirements/
 RUN pip install -r /src/requirements/prod.txt
 
 # Source
-ADD . /src/
+COPY . /src/
 
 ENV DJANGO_SETTINGS_MODULE=settings.prod
 
