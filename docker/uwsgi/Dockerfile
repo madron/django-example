@@ -2,7 +2,7 @@ FROM madron/uwsgi:latest
 MAINTAINER Massimiliano Ravelli <massimiliano.ravelli@gmail.com>
 
 # Requirements
-COPY requirements/ /src/requirements/
+COPY ./requirements/ /src/requirements/
 RUN pip install -r /src/requirements/prod.txt
 
 # Source
