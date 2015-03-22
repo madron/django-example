@@ -2,9 +2,9 @@ FROM madron/uwsgi:latest
 MAINTAINER Massimiliano Ravelli <massimiliano.ravelli@gmail.com>
 
 # Copy only requirements to reuse cache for pip install
-COPY requirements.txt /src/
+COPY requirements /src/requirements/
 
-RUN pip install -r /src/requirements.txt
+RUN pip install -r /src/requirements/prod.txt
 
 COPY . /src/
 
