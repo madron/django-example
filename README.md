@@ -1,11 +1,13 @@
 # django-example
 
 
+Quickstart
+
+    docker-compose up
+    curl http://localhost:8000/
+    curl http://localhost:8001/
+    curl http://localhost:8002/
+
 Build
 
-    docker build -t madron/django-example -f docker/uwsgi/Dockerfile .
-
-
-Run
-
-    docker run -it --rm --name django-example -p 80:8000 -p 81:9191 madron/django-example
+    docker build -t madron/django-example .

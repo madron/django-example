@@ -1,0 +1,19 @@
+uwsgi:
+    build: .
+    volumes:
+        - /media
+        - /run/uwsgi
+    environment:
+        - DEBUG=True
+
+nginx:
+    build: .
+    volumes_from:
+        - uwsgi
+    links:
+        - uwsgi
+    ports:
+        - '8000:80'  # http protocol
+        - '8001:81'  # uwsgi protocol over tcp
+        - '8002:82'  # uwsgi protocol over unix socket
+    command: nginx
