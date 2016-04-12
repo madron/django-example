@@ -1,13 +1,27 @@
 uwsgi:
-    build: .
+    image: madron/django-example
     volumes:
         - /media
         - /run/uwsgi
     environment:
         - DEBUG=True
+    command: >
+        uwsgi
+        --plugins /usr/lib/uwsgi/python_plugin.so
+        --master
+        --processes 1
+        --threads 1
+        --listen 128
+        --chdir /src
+        --wsgi settings.wsgi
+        --http-socket :8000
+        --uwsgi-socket :3031
+        --uwsgi-socket /run/uwsgi/uwsgi.sock
+        --chmod-socket
+        --stats :9191
 
 nginx:
-    build: .
+    image: madron/django-example
     volumes_from:
         - uwsgi
     links:

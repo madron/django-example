@@ -17,8 +17,6 @@ ENV DJANGO_SETTINGS_MODULE=settings.prod
 # Static files
 RUN /src/manage.py collectstatic --link --noinput --verbosity=0
 
-VOLUME ["/run/uwsgi"]
-VOLUME ["/sqlite"]
+VOLUME ["/run/uwsgi", "/sqlite"]
 
 ENTRYPOINT ["/src/docker/entrypoint.sh"]
-CMD ["uwsgi", "--master", "--processes", "1", "--threads", "1", "/src/docker/uwsgi.ini"]
